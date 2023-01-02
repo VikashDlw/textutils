@@ -4,14 +4,17 @@ export default function TextForms(props) {
     const handleUpClick = () =>{
         //console.log("Upper Case Button Clicked");
         setText(text.toUpperCase());
+        props.showAlert("Converted to UpperCase","success");
     }
     const handleLowClick = () => {
         
         setText(text.toLocaleLowerCase());
+        props.showAlert("Converted to LowerCase","success");
     }
     const handleClearClick = () => {
         //console.log("Lower Case Button Clicked");
         setText('');
+        props.showAlert("Text Cleared","success");
     }
     const handleOnChange = (event) =>{
        // console.log("On CHange");
@@ -21,11 +24,13 @@ export default function TextForms(props) {
         var text=document.getElementById("MyBox");
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Text Copied to Clipboard","success");
         console.log("i am copy Successfull");
      }
      const handleRemoveSpace = () =>{
        let newtext = text.split(/[ ]+/);
        setText(newtext.join(" "));
+       props.showAlert("Extra Spaces removed","success");
     }
     
     const [text, setText] = useState('');
@@ -49,7 +54,7 @@ export default function TextForms(props) {
             <p>{text.split(" ").length} Words and {text.length} Character</p>
             <p>{0.008*text.split(" ").length} Minutes to read</p>
             <h3>Preview</h3>
-            <p>{text}</p>
+            <p>{text.length>0?text:"Enter Something To check Preview"}</p>
         </div>
     </div>
     </>
