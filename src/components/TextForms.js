@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Remve_space from './Remve_space';
+
 
 export default function TextForms(props) {
     const handleUpClick = () =>{
@@ -32,6 +34,10 @@ export default function TextForms(props) {
        setText(newtext.join(" "));
        props.showAlert("Extra Spaces removed","success");
     }
+    const getcount = (str) =>
+    {
+        return (text===''?0:str.trim().split(/\s+/).length);
+    }
     
     const [text, setText] = useState('');
   return (
@@ -51,10 +57,10 @@ export default function TextForms(props) {
         </div>
         <div className="container">
             <h3>Your Text Summary</h3>
-            <p>{text.split(" ").length} Words and {text.length} Character</p>
+            <p>{getcount(text.replace(/\s+/g, ' ').trim())} Words and {text.length} Character</p>
             <p>{0.008*text.split(" ").length} Minutes to read</p>
             <h3>Preview</h3>
-            <p>{text.length>0?text:"Enter Something To check Preview"}</p>
+            <p>{text.length>0?text.replace(/\s+/g, ' ').trim():"Enter Something To check Preview"}</p>
         </div>
     </div>
     </>

@@ -4,6 +4,7 @@ import Alert from './components/Alert';
 import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForms from './components/TextForms';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -49,6 +50,7 @@ function App() {
           <Route exact path="/about" element={<About mode={mode} />}>
           </Route>
         </Routes>
+        
         </div>
       </Router>
     </>
