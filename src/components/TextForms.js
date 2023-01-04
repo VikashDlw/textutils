@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Remve_space from './Remve_space';
 
 
 export default function TextForms(props) {
