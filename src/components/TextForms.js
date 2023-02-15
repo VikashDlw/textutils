@@ -25,6 +25,7 @@ export default function TextForms(props) {
         var text=document.getElementById("MyBox");
         text.select();
         navigator.clipboard.writeText(text.value);
+        document.getSelection().removeAllRanges();
         props.showAlert("Text Copied to Clipboard","success");
         console.log("i am copy Successfull");
      }
@@ -46,11 +47,11 @@ export default function TextForms(props) {
         <div className="mb-3 ">
             <textarea className="form-control" value={text} onChange={handleOnChange}  style={{ backgroundColor: props.mode==='dark'?'#1C2833 ':'white' , color: props.mode==='dark'?'white':'black'}} id="MyBox" rows="8"></textarea>
             <div className="my-2">
-                <button className="btn btn-info mx-1 my-1" onClick={handleUpClick}>Convert to Upper Case</button>
-                <button className="btn btn-info mx-1 my-1" onClick={handleLowClick}>Convert to Lower Case</button>
-                <button className="btn btn-info mx-1 my-1" onClick={handleClearClick}>Clear Form</button>
-                <button className="btn btn-info mx-1 my-1" onClick={handleCopy}>Copy Text</button>
-                <button className="btn btn-info mx-1 my-1" onClick={handleRemoveSpace}>Remove Extra Spaces</button>
+                <button disabled={text.length===0} className="btn btn-info mx-1 my-1" onClick={handleLowClick}>Convert to Lower Case</button>
+                <button disabled={text.length===0} className="btn btn-info mx-1 my-1" onClick={handleClearClick}>Clear Form</button>
+                <button disabled={text.length===0} className="btn btn-info mx-1 my-1" onClick={handleUpClick}>Convert to Upper Case</button>
+                <button disabled={text.length===0} className="btn btn-info mx-1 my-1" onClick={handleCopy}>Copy Text</button>
+                <button disabled={text.length===0} className="btn btn-info mx-1 my-1" onClick={handleRemoveSpace}>Remove Extra Spaces</button>
 
             </div>
         </div>
@@ -59,7 +60,7 @@ export default function TextForms(props) {
             <p>{getcount(text.replace(/\s+/g, ' ').trim())} Words and {text.length} Character</p>
             <p>{0.008*text.split(" ").length} Minutes to read</p>
             <h3>Preview</h3>
-            <p>{text.length>0?text.replace(/\s+/g, ' ').trim():"Enter Something To check Preview"}</p>
+            <p>{text.length>0?text.replace(/\s+/g, ' ').trim():"Nothing Preview"}</p>
         </div>
     </div>
     </>
